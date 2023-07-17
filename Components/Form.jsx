@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Input from "./Input";
 import Button from "./Button";
 import axios from "axios";
@@ -8,8 +8,9 @@ import { useNavigate } from "react-router-dom";
 
 const mailReg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
-const Form = ({ isEditing, userId , userName , userMail }) => {
-  const { URL_USERS , name, setName, mail, setMail, getData } = useContext(Datas);
+const Form = ({ isEditing, userId, userName, userMail }) => {
+  const { URL_USERS, name, setName, mail, setMail, getData } =
+    useContext(Datas);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,7 +31,7 @@ const Form = ({ isEditing, userId , userName , userMail }) => {
   };
 
   const editHandler = () => {
-    const updatedUser = { id: userId, name: name, gmail: mail };
+    const updatedUser = { id: userId, name: name.trim(), gmail: mail.trim() };
     axios
       .put(`${URL_USERS}/${userId}`, updatedUser)
       .then(navigate("/"))
@@ -38,11 +39,8 @@ const Form = ({ isEditing, userId , userName , userMail }) => {
   };
 
   const addHandler = () => {
-    const newUser = { id: userId, name: name, gmail: mail };
-    axios
-      .post(`${URL_USERS}`, newUser)
-      .then(navigate("/"))
-      .then(getData);
+    const newUser = { id: userId, name: name.trim(), gmail: mail.trim() };
+    axios.post(`${URL_USERS}`, newUser).then(navigate("/")).then(getData);
   };
 
   return (
@@ -60,10 +58,10 @@ const Form = ({ isEditing, userId , userName , userMail }) => {
         value={mail}
         handler={setMail}
       />
-     <div className="w-full flex justify-center gap-4">
-     <Button link={null} action={actionHandler} content="Done" />
-      {!isEditing && <Button link="/" action={null} content="Back" /> }
-     </div>
+      <div className="w-full flex justify-center gap-4">
+        <Button link={null} action={actionHandler} content="Done" />
+        {!isEditing && <Button link="/" action={null} content="Back" />}
+      </div>
     </div>
   );
 };
