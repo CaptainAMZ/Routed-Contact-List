@@ -1,11 +1,12 @@
 {
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "version": 2,
   "builds": [
     {
       "src": "server.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["./db/db.json"]
+        "includeFiles": ["db.json"]
       }
     }
   ],
