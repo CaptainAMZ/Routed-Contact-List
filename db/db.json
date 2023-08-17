@@ -1,9 +1,4 @@
 {
-  "users": [
-    {
-      "name": "1",
-      "gmail": "dffd@dfd.df",
-      "id": 1
-    }
-  ]
+  "users": [],
+  "names": []
 }
