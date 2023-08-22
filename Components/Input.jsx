@@ -1,5 +1,3 @@
-import React from "react";
-
 const Input = ({
   needLabel = true,
   label = "label",
@@ -7,7 +5,6 @@ const Input = ({
   value,
   handler,
 }) => {
-
   return (
     <div
       className="w-[80%] 
@@ -31,7 +28,7 @@ const Input = ({
       )}
       <input
         value={value}
-        onChange={e => handler(e.target.value)}
+        onChange={(e) => handler(e.target.value)}
         className="rounded-lg 
         p-2 
         outline-none 

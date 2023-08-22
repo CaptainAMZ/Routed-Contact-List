@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import Datas from "../Context/datas";
-import Button from "../Components/Button";
+import { Datas, Button } from "../src/index";
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -15,7 +14,7 @@ const DetailPage = () => {
           Name : {mainUser.name}
         </p>
         <p className=" px-10 py-3 bg-[#e76767] rounded">
-          Gmail : {mainUser.gmail}
+          Gmail : {mainUser.mail}
         </p>
         <Button link="/" action={null} content="Back" />
       </div>

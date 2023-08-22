@@ -1,16 +1,12 @@
 import { useEffect } from "react";
-import Input from "./Input";
-import Button from "./Button";
-import axios from "axios";
+import { Input, Button, Datas, supabase } from "../src/index";
 import { useContext } from "react";
-import Datas from "../Context/datas";
 import { useNavigate } from "react-router-dom";
 
 const mailReg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
 const Form = ({ isEditing, userId, userName, userMail }) => {
-  const { URL_USERS, name, setName, mail, setMail, getData } =
-    useContext(Datas);
+  const { name, setName, mail, setMail, getData, setError } = useContext(Datas);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,17 +26,34 @@ const Form = ({ isEditing, userId, userName, userMail }) => {
     else alert("enter the infos correctly");
   };
 
-  const editHandler = () => {
-    const updatedUser = { id: userId, name: name.trim(), gmail: mail.trim() };
-    axios
-      .put(`${URL_USERS}/${userId}`, updatedUser)
-      .then(navigate("/"))
-      .then(getData);
+  const editHandler = async () => {
+    const updatedUser = { id: userId, name: name.trim(), mail: mail.trim() };
+    const { error } = await supabase
+      .from("People")
+      .update({ ...updatedUser })
+      .eq("id", userId);
+    if (error) setError(true);
+    else {
+      navigate("/");
+      await getData();
+      setError(false);
+    }
   };
 
-  const addHandler = () => {
-    const newUser = { id: userId, name: name.trim(), gmail: mail.trim() };
-    axios.post(`${URL_USERS}`, newUser).then(navigate("/")).then(getData);
+  const addHandler = async () => {
+    const newUser = {
+      name: name.trim(),
+      mail: mail.trim(),
+    };
+
+    const { error } = await supabase.from("People").insert([{ ...newUser }]);
+
+    if (error) setError(true);
+    else {
+      navigate("/");
+      await getData();
+      setError(false);
+    }
   };
 
   return (

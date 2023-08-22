@@ -1,8 +1,5 @@
-import Input from "../Components/Input";
-import Rows from "../Components/Rows";
-import Button from "../Components/Button";
+import { Rows, Button, Datas, Input } from "../src/index";
 import { useContext } from "react";
-import Datas from "../Context/datas";
 
 const MainPage = () => {
   const { users, search, setSearch } = useContext(Datas);

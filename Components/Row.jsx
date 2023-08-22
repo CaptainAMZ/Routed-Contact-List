@@ -1,21 +1,30 @@
-import React from "react";
-import Button from "./Button";
-import axios from "axios";
-import Datas from "../Context/datas";
+import { Button, Datas, supabase } from "../src/index";
 import { useContext } from "react";
 
-const Row = ({ id = "empty", name = "empty", gmail = "empty" }) => {
-  const { URL_USERS, getData } = useContext(Datas);
+const Row = ({
+  id = "empty",
+  idx = "empty",
+  name = "empty",
+  mail = "empty",
+}) => {
+  const { getData, setError } = useContext(Datas);
 
-  const deleteHandler = () => {
-    axios.delete(`${URL_USERS}/${id}`).then(getData);
+  const deleteHandler = async () => {
+    const { error } = await supabase.from("People").delete().eq("id", id);
+    if (error) setError(true);
+    else {
+      await getData();
+      setError(false);
+    }
   };
 
   return (
-    <div className="flex flex-col items-center justify-between bg-white p-3 rounded-lg text-left md:flex-row">
-      <p className="flex-1">{id} </p>
-      <p className="flex-1">{name}</p>
-      <p className="flex-[3]">{gmail}</p>
+    <div className="w-full flex flex-col items-center justify-between bg-white p-3 rounded-lg text-left lg:flex-row gap-3">
+      <div className="flex flex-1 gap-3 items-center">
+        <p className="p-3">{idx + 1} </p>
+        <p className="flex-[3] break-all">{name}</p>
+        <p className="flex-[7] break-all">{mail}</p>
+      </div>
       <div className="flex gap-2">
         <Button
           link={`/edit/${id}`}
