@@ -57,7 +57,7 @@ const Form = ({ isEditing, userId, userName, userMail }) => {
   };
 
   return (
-    <div className="w-[60%] shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-white p-10 rounded-xl flex justify-center items-center flex-col gap-4">
+    <div className="md:w-[60%] w-[95%] shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-white p-10 rounded-xl flex justify-center items-center flex-col gap-4">
       <h2 className=" text-4xl mb-4">{isEditing ? "EDIT" : "ADD"}</h2>
       <Input
         label="Name"

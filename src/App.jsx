@@ -13,9 +13,9 @@ function App() {
     if(error?.code.length) {
       setError(true)
     }else {
-      setUsers(People); 
+      setUsers(People);
       setError(false)
-    }    
+    }
   };
 
   useEffect(() => {
@@ -25,7 +25,7 @@ function App() {
   if (error && !users.length) return <p>Sorry,there is an error on the server side</p>;
   else
     return (
-      <div className="flex flex-col w-full justify-center items-center relative">
+      <div className="max-w-[1200px] flex flex-col w-full justify-center items-center relative">
         <Datas.Provider
           value={{
             users,

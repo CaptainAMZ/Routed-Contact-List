@@ -7,7 +7,7 @@ const MainPage = () => {
   const searched = users.filter((user) => user.name.includes(search));
 
   return (
-    <div className="max-w-5xl w-full md:w-10/12 h-full flex flex-col p-10 justify-start items-center gap-2">
+    <div className=" md:max-w-5xl w-[95%] md:w-10/12 h-full flex flex-col sm:p-10 justify-start items-center gap-2">
       <div className=" flex-col md:flex-row w-full mx-auto flex  justify-between items-center gap-2">
         <Button link={"add"} content="Add Person" bgColor="white" width="160" />
         <Input

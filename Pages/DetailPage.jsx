@@ -9,7 +9,7 @@ const DetailPage = () => {
 
   if (mainUser)
     return (
-      <div className="w-fit shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-white p-10 rounded-xl flex justify-center items-center flex-col gap-8 text-center text-white">
+      <div className="w-full max-w-[600px] shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-white p-10 rounded-xl flex justify-center items-center flex-col gap-8 text-center text-white">
         <p className=" px-10 py-3 bg-[#8585d1] rounded">
           Name : {mainUser.name}
         </p>

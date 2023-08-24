@@ -2,10 +2,10 @@ import { Button, Datas, supabase } from "../src/index";
 import { useContext } from "react";
 
 const Row = ({
-  id = "empty",
-  idx = "empty",
-  name = "empty",
-  mail = "empty",
+  id,
+  idx,
+  name,
+  mail,
 }) => {
   const { getData, setError } = useContext(Datas);
 
@@ -20,7 +20,7 @@ const Row = ({
 
   return (
     <div className="w-full flex flex-col items-center justify-between bg-white p-3 rounded-lg text-left lg:flex-row gap-3">
-      <div className="flex flex-1 gap-3 items-center">
+      <div className="flex flex-1 gap-3 items-center w-full">
         <p className="p-3">{idx + 1} </p>
         <p className="flex-[3] break-all">{name}</p>
         <p className="flex-[7] break-all">{mail}</p>
